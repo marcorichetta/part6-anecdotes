@@ -24,6 +24,11 @@ const reducer = (state = initialState, action) => {
   console.log('action', action)
 
   switch (action.type) {
+    case 'NEW_ANECDOTE':
+      /* Return a new array with the data from
+      the state plus the action data */
+      return state.concat(action.data)
+
     case 'VOTE':
       // Extract anecdote id
       const id = action.data.id
@@ -49,5 +54,15 @@ const reducer = (state = initialState, action) => {
   return state
 }
 
+export const createAnecdote = (content) => {
+  return {
+    type: 'NEW_ANECDOTE',
+    data: {
+      content,
+      id: getId(),
+      votes: 0
+    }
+  }
+}
 
 export default reducer
