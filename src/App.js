@@ -1,16 +1,8 @@
 import React from 'react';
 import { createAnecdote } from './reducers/anecdoteReducer';
+import Anecdotes from './components/Anecdotes';
 
 const App = (props) => {
-  const anecdotes = props.store.getState()
-
-  const vote = (id) => {
-    console.log('vote', id)
-    return {
-      type: 'VOTE',
-      data: { id }
-    }
-  }
 
   const addAnecdote = (event) => {
     event.preventDefault()
@@ -26,17 +18,7 @@ const App = (props) => {
   return (
     <div>
       <h2>Anecdotes</h2>
-      {anecdotes.map(anecdote =>
-        <div key={anecdote.id}>
-          <div>
-            {anecdote.content}
-          </div>
-          <div>
-            has {anecdote.votes}
-            <button onClick={() => props.store.dispatch(vote(anecdote.id))}>vote</button>
-          </div>
-        </div>
-      )}
+      <Anecdotes store={props.store} />
       <h2>create new</h2>
       <form onSubmit={addAnecdote}>
         <div>
