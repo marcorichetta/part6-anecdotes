@@ -10,12 +10,13 @@ const Notification = ({ store }) => {
 
   const notificationMessage = store.getState().notifications
   
+  if (notificationMessage === '') {
+    return null
+  }
+
   return (
     <div style={style}>
-      {notificationMessage === ''
-        ? ''
-        : notificationMessage
-      }
+       {notificationMessage}
     </div>
   )
 }

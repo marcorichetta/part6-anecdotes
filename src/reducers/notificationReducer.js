@@ -1,7 +1,9 @@
 export const createNotification = (content) => {
     return {
         type: 'CREATE_NOTIFICATION',
-        content
+        data: {
+            content
+        }
     }
 }
 
@@ -14,7 +16,7 @@ export const removeNotification = () => {
 const notificationReducer = (state = '', action) => {
     switch (action.type) {
         case 'CREATE_NOTIFICATION':
-            return `${action.content}`
+            return `${action.data.content}`
 
         case 'REMOVE_NOTIFICATION':
             return ''

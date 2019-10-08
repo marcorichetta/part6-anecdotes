@@ -25,9 +25,24 @@ const AnecdoteList = ({ store }) => {
         }, 5000)
     }
 
+    // Destructure the values from the store
+    const { anecdotes, filter } = store.getState()
+
+    /**
+     * Helper function to filter 
+     * the anecdotes to be shown
+     */
+    const anecdotesToShow = () => {
+        if ( filter === 'ALL') {
+            return anecdotes
+        }
+
+        return anecdotes.filter(a => a.content.toLowerCase().includes(filter))
+    }
+
     return (
         <ul>
-            {store.getState().anecdotes.map(anecdote =>
+            {anecdotesToShow().map(anecdote =>
                 <Anecdote 
                     key={anecdote.id}    
                     anecdote={anecdote}
