@@ -9,10 +9,10 @@ const App = (props) => {
 
   return (
     <div>
+      <h1>Anecdotes</h1>
       <Notification store={store} />
       <h2>create new</h2>
       <AnecdoteForm store={store} />
-      <h2>Anecdotes</h2>
       <AnecdoteList store={store} />
     </div>
   )

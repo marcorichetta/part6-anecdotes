@@ -4,12 +4,18 @@ const Notification = ({ store }) => {
   const style = {
     border: 'solid',
     padding: 10,
-    borderWidth: 1
+    borderWidth: 2,
+    borderRadius: 10
   }
 
+  const notificationMessage = store.getState().notifications
+  
   return (
     <div style={style}>
-      {store.getState().notifications}
+      {notificationMessage === ''
+        ? ''
+        : notificationMessage
+      }
     </div>
   )
 }
