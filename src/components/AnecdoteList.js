@@ -2,7 +2,7 @@ import React from 'react'
 import Anecdote from './Anecdote'
 import { vote } from '../reducers/anecdoteReducer'
 
-const Anecdotes = ({ store }) => {
+const AnecdoteList = ({ store }) => {
     return (
         <ul>
             {store.getState().map(anecdote =>
@@ -19,4 +19,4 @@ const Anecdotes = ({ store }) => {
     )
 }
 
-export default Anecdotes
+export default AnecdoteList
