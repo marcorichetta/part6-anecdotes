@@ -18,7 +18,7 @@ const AnecdoteList = (props) => {
         props.vote(anecdote)
 
         // Dispatch the notification message
-        const notificationMessage = `Voted: ${anecdote.content.toString()}` 
+        const notificationMessage = `Voted: ${anecdote.content.toString()}`
         props.createNotification(notificationMessage)
 
         // Dispatch the notification removal
@@ -27,21 +27,9 @@ const AnecdoteList = (props) => {
         }, 5000)
     }
 
-    /**
-     * Helper function to filter 
-     * the anecdotes to be shown
-     */
-    const anecdotesToShow = () => {
-        if ( props.filter === 'ALL') {
-            return props.anecdotes
-        }
-
-        return props.anecdotes.filter(a => a.content.toLowerCase().includes(props.filter))
-    }
-
     return (
         <ul>
-            {anecdotesToShow().map(anecdote =>
+            {props.visibleAnecdotes.map(anecdote =>
                 <Anecdote 
                     key={anecdote.id}    
                     anecdote={anecdote}
@@ -49,13 +37,25 @@ const AnecdoteList = (props) => {
                 />
             )}
         </ul>
-
     )
+}
+
+
+/**
+ * Helper function to filter 
+ * the anecdotes to be shown
+ */
+const anecdotesToShow = ({ anecdotes, filter }) => {
+    if (filter === 'ALL') {
+        return anecdotes
+    }
+
+    return anecdotes.filter(a => a.content.toLowerCase().includes(filter))
 }
 
 const mapStateToProps = (state) => {
     return {
-        anecdotes: state.anecdotes,
+        visibleAnecdotes: anecdotesToShow(state),
         filter: state.filter
     }
 }
