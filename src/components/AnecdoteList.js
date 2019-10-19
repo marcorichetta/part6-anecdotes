@@ -15,15 +15,15 @@ const AnecdoteList = (props) => {
      */
     const voteHandler = (anecdote) => {
         // Dispatch the vote to the anecdoteReducer
-        props.store.dispatch(vote(anecdote))
+        props.vote(anecdote)
 
         // Dispatch the notification message
         const notificationMessage = `Voted: ${anecdote.content.toString()}` 
-        props.store.dispatch(createNotification(notificationMessage))
+        props.createNotification(notificationMessage)
 
         // Dispatch the notification removal
         setTimeout(() => {
-            props.store.dispatch(removeNotification())
+            props.removeNotification()
         }, 5000)
     }
 
@@ -60,4 +60,13 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(AnecdoteList)
+const mapDispatchToProps = {
+    vote,
+    createNotification,
+    removeNotification
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(AnecdoteList)

@@ -11,7 +11,6 @@ const App = () => {
       <h1>Anecdotes</h1>
       <Notification />
       <Filter />
-      <h2>create new</h2>
       <AnecdoteForm />
       <AnecdoteList />
     </div>

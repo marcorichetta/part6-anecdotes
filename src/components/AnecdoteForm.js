@@ -1,4 +1,6 @@
 import React from 'react'
+import { connect } from "react-redux";
+
 import { createAnecdote } from '../reducers/anecdoteReducer'
 
 const AnecdoteForm = (props) => {
@@ -9,19 +11,23 @@ const AnecdoteForm = (props) => {
         const content = event.target.anecdote.value
         event.target.anecdote.value = ''
 
-        props.store.dispatch(
-            createAnecdote(content)
-        )
+        props.createAnecdote(content)
     }
 
     return (
-        <form onSubmit={addAnecdote}>
-            <div>
-                <input name="anecdote" />
-            </div>
-            <button>create</button>
-        </form>
+        <>
+            <h2>create new</h2>
+            <form onSubmit={addAnecdote}>
+                <div>
+                    <input name="anecdote" />
+                </div>
+                <button>create</button>
+            </form>
+        </>
     )
 }
 
-export default AnecdoteForm
+export default connect(
+    null,
+    { createAnecdote }
+)(AnecdoteForm)
