@@ -2,6 +2,7 @@ import anecdoteService from '../services/anecdotes'
 
 const reducer = (state = [], action) => {
   console.log(action.type)
+  console.log(action.data)
   switch (action.type) {
     case 'NEW_ANECDOTE':
       /* Return a new array with the data from
@@ -39,17 +40,7 @@ const reducer = (state = [], action) => {
 }
 
 /* ACTION CREATORS */
-
 // Functions that create actions are called action creators.
-export const createAnecdote = content => {
-  return async dispatch => {
-    const newAnecdote = await anecdoteService.createNew(content)
-    dispatch({  
-      type: 'NEW_ANECDOTE',
-      data: newAnecdote,
-    })
-  }
-}
 
 /**
  * Method used to init the state in a single action
@@ -66,16 +57,25 @@ export const initializeAnecdotes = () => {
       data: anecdotes,
     })
   }
-
 }
 
-export const vote = ({ id, content}) => {
-  return {
-    type: 'VOTE',
-    data: { 
-      content,
-      id
-    }
+export const createAnecdote = content => {
+  return async dispatch => {
+    const newAnecdote = await anecdoteService.createNew(content)
+    dispatch({  
+      type: 'NEW_ANECDOTE',
+      data: newAnecdote,
+    })
+  }
+}
+
+export const vote = anecdote => {
+  return async dispatch => {
+    const votedAnecdote = await anecdoteService.vote(anecdote)
+    dispatch({
+      type: 'VOTE',
+      data: votedAnecdote
+    })
   }
 }
 
