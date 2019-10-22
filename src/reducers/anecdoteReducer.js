@@ -1,3 +1,5 @@
+import anecdoteService from '../services/anecdotes'
+
 const reducer = (state = [], action) => {
   console.log(action.type)
   switch (action.type) {
@@ -36,22 +38,35 @@ const reducer = (state = [], action) => {
   }
 }
 
-export const createAnecdote = (data) => {
-  console.log('NEW', data)
-  return {
-    type: 'NEW_ANECDOTE',
-    data,
+/* ACTION CREATORS */
+
+// Functions that create actions are called action creators.
+export const createAnecdote = content => {
+  return async dispatch => {
+    const newAnecdote = await anecdoteService.createNew(content)
+    dispatch({  
+      type: 'NEW_ANECDOTE',
+      data: newAnecdote,
+    })
   }
 }
 
 /**
  * Method used to init the state in a single action
  */
-export const initializeAnecdotes = (anecdotes) => {
-  return {
-    type: 'INIT_ANECDOTES',
-    data: anecdotes,
+export const initializeAnecdotes = () => {
+  return async dispatch => {
+    
+    // The operation first fetches all the anecdotes from the server
+    const anecdotes = await anecdoteService.getAll()
+
+    // Then dispatches the anecdotes to the action, which adds them to the store.
+    dispatch({
+      type: 'INIT_ANECDOTES',
+      data: anecdotes,
+    })
   }
+
 }
 
 export const vote = ({ id, content}) => {

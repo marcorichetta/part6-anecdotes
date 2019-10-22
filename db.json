@@ -34,6 +34,11 @@
       "content": "Testing note creation on db.json",
       "votes": 0,
       "id": "g67IlA4"
+    },
+    {
+      "content": "Testing use of redux-thunk",
+      "votes": 0,
+      "id": "Zpzy2t2"
     }
   ]
 }

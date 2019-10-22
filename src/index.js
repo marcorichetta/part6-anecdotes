@@ -1,21 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore, combineReducers } from 'redux'
 import { Provider } from "react-redux";
+
 import App from './App'
-import anecdoteReducer from './reducers/anecdoteReducer'
-import notificationReducer from './reducers/notificationReducer'
-import filterReducer from './reducers/filterReducer'
+import store from './store'
 
-const reducer = combineReducers({
-  anecdotes: anecdoteReducer,
-  notifications: notificationReducer,
-  filter: filterReducer
-})
-
-const store = createStore(reducer)
 
 ReactDOM.render(
+  /* We have to define our application as the child of
+      the Provider component and pass it our Redux store */
   <Provider store={store}>
     <App />
   </Provider>,
