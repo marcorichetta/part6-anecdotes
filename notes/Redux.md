@@ -5,7 +5,6 @@
 ![Flux architecture](https://facebook.github.io/flux/img/overview/flux-simple-f8-diagram-explained-1300w.png)
 
 ## Store
----
 
 The whole state of the application is stored into one JavaScript-object in the store.
 
@@ -17,7 +16,6 @@ The whole state of the application is stored into one JavaScript-object in the s
 - Handles unregistering of listeners via the function returned by `subscribe(listener)`
 
 ## Actions
----
 The state of the *store* is changed with **actions**. Actions are objects, which have at least a field determining the type of the action.
 ```js
 {
@@ -40,7 +38,6 @@ const vote = (id) => {
 ```
 
 ## Reducers
----
 *Actions* are used in reducers.
 A reducer is a function which is given the current **state** and an **action** as parameters. It returns a new state.
 
@@ -81,7 +78,6 @@ rootReducer = combineReducers({potato: potatoReducer, tomato: tomatoReducer})
 - `Array.concat()` creates a new array with the old elements and the new one
 
 ## Dispatch and getState
----
 Reducer isn't used directly, is given as a parameter to create the store
 ```js
 const store = createStore(counterReducer)
@@ -94,7 +90,6 @@ console.log('Store state', store.getState()) // 1
 ```
 
 ## Subscribe
----
 Adds a change listener which will be called any time an action is dispatched.
 
 In this example, **every change in the store** will be printed to the console
@@ -112,12 +107,10 @@ store.dispatch({ type: 'DECREMENT' }) // -1
 ```
 
 ## React-Redux
----
 See images https://fullstackopen.com/en/part6/many_reducers_connect#connect
 
 
 ## Redux-Thunk
----
 
 Thanks to redux-thunk, it's possible to define *action creators* so that they return a function having the dispatch-method of redux-store as its parameter.
 
