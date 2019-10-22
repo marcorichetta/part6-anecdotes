@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import Anecdote from './Anecdote'
 import { vote } from '../reducers/anecdoteReducer'
-import { createNotification, removeNotification } from '../reducers/notificationReducer'
+import { setNotification } from '../reducers/notificationReducer'
 
 const AnecdoteList = (props) => {
 
@@ -18,12 +18,10 @@ const AnecdoteList = (props) => {
 
         // Dispatch the notification message
         const notificationMessage = `Voted: ${anecdote.content.toString()}`
-        props.createNotification(notificationMessage)
 
-        // Dispatch the notification removal
-        setTimeout(() => {
-            props.removeNotification()
-        }, 5000)
+        /* The methods for creating and hiding the notification
+            are abstracted to the action creator */
+        props.setNotification(notificationMessage, 5) // Seconds
     }
 
     return (
@@ -61,8 +59,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     vote,
-    createNotification,
-    removeNotification
+    setNotification
 }
 
 export default connect(
