@@ -11,7 +11,6 @@ const AnecdoteList = (props) => {
      * Helper function to dispatch the vote, 
      * dispatch the notification message and set
      * a timeout to remove it.
-     * @param {Object} anecdote
      */
     const voteHandler = (anecdote) => {
         // Dispatch the vote to the anecdoteReducer

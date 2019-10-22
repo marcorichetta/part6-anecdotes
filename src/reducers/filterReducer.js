@@ -1,10 +1,3 @@
-export const setFilter = filter => {
-    return {
-        type: 'SET_FILTER',
-        filter
-    }
-}
-
 const initialState = 'ALL'
 
 const filterReducer = (state = initialState, action) => {
@@ -12,7 +5,14 @@ const filterReducer = (state = initialState, action) => {
         case 'SET_FILTER':
             return action.filter
         default:
-            return initialState
+            return state
+    }
+}
+
+export const setFilter = filter => {
+    return {
+        type: 'SET_FILTER',
+        filter
     }
 }
 
